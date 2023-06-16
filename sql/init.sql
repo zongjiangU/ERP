@@ -1,0 +1,4 @@
+create table user_info (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+role INTEGER NOT NULL);
