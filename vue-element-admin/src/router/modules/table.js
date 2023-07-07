@@ -6,9 +6,9 @@ const tableRouter = {
   path: '/table',
   component: Layout,
   redirect: '/table/complex-table',
-  name: 'Table',
+  name: '发票管理',
   meta: {
-    title: 'Table',
+    title: '发票管理',
     icon: 'table'
   },
   children: [
@@ -33,8 +33,8 @@ const tableRouter = {
     {
       path: 'complex-table',
       component: () => import('@/views/table/complex-table'),
-      name: 'ComplexTable',
-      meta: { title: 'Complex Table' }
+      name: '发票管理1',
+      meta: { title: '发票管理1' }
     }
   ]
 }

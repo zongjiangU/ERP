@@ -4,25 +4,25 @@ import com.example.erpserver.entity.ErpResult;
 import com.example.erpserver.entity.LoginReq;
 import com.example.erpserver.entity.LoginResp;
 import com.example.erpserver.entity.UserInfoResp;
+import com.example.erpserver.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
-    @PostMapping("dev-api/user/login")
+    @Resource
+    UserService userService;
+
+    @PostMapping("vue-element-admin/user/login")
     public ErpResult<LoginResp> login(@RequestBody LoginReq req) {
-        LoginResp resp = new LoginResp();
-        resp.setToken("admin-token");
-        resp.setUsername("admin");
-        resp.setPassword("123456");
-        resp.setCode(200);
-        return ErpResult.success(resp);
+        return userService.login(req);
     }
 
-    @GetMapping("dev-api/user/info")
+    @GetMapping("vue-element-admin/user/info")
     public ErpResult<UserInfoResp> userInfo(@RequestParam("token") String token) {
         UserInfoResp resp = new UserInfoResp();
         resp.setName("Super Admin");

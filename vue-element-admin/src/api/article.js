@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(query) {
   return request({
-    url: '/vue-element-admin/article/list',
+    url: '/vue-element-admin/basicinfo/getList',
     method: 'get',
     params: query
   })
@@ -16,26 +16,26 @@ export function fetchArticle(id) {
   })
 }
 
-export function fetchPv(pv) {
+export function createBasicInfo(data) {
   return request({
-    url: '/vue-element-admin/article/pv',
+    url: '/vue-element-admin/basicinfo/add',
+    method: 'post',
+    data
+  })
+}
+
+export function updateBasicInfo(data) {
+  return request({
+    url: '/vue-element-admin/basicinfo/update',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteBasicInfo(id) {
+  return request({
+    url: '/vue-element-admin/basicinfo/delete',
     method: 'get',
-    params: { pv }
-  })
-}
-
-export function createArticle(data) {
-  return request({
-    url: '/vue-element-admin/article/create',
-    method: 'post',
-    data
-  })
-}
-
-export function updateArticle(data) {
-  return request({
-    url: '/vue-element-admin/article/update',
-    method: 'post',
-    data
+    params: { id }
   })
 }
