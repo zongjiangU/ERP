@@ -17,11 +17,12 @@ create table basic_info (
 @Mapper
 public interface BasicInfoDao {
 
-    @Select("select * from basic_info where customer like '%' || ${customer} || '%' and provider like '%' || #{provider} || '%' limit ${limit} offset ${offset}")
-    List<BasicInfo> getBasicInfoList(@Param("customer") Object customer, @Param("provider") String provider,@Param("limit") Integer limit, @Param("offset") Integer offset);
+    @Select("<script>select * from basic_info where 1=1" +
+            "<if test='customer!=null'> and customer like '%' || #{customer} || '%' </if> <if test='provider!=null'> and provider like '%' || #{provider} || '%' </if> limit ${limit} offset ${offset}</script>")
+    List<BasicInfo> getBasicInfoList(@Param("customer") String customer, @Param("provider") String provider,@Param("limit") Integer limit, @Param("offset") Integer offset);
 
-    @Select("select count(*) from basic_info where customer like '%' || ${customer} || '%' and provider like '%' || #{provider} || '%'")
-    Integer getBasicInfoCount(String customer, String provider);
+    @Select("<script>select count(*) from basic_info where 1=1 <if test='customer!=null'> and customer like '%' || #{customer} || '%' </if> <if test='provider!=null'> and provider like '%' || #{provider} || '%' </if></script>")
+    Integer getBasicInfoCount(@Param("customer") String customer, String provider);
 
     @Insert("insert into basic_info (tax, type, customer, provider) values (#{tax}, #{type}, #{customer}, #{provider})")
     void insertBasicInfo(BasicInfo basicInfo);

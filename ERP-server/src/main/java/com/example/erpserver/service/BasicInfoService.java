@@ -14,8 +14,8 @@ public class BasicInfoService {
     BasicInfoDao basicInfoDao;
 
     public Object getList(Integer page, Integer limit, String customer, String provider){
-        List<BasicInfo>  list=  basicInfoDao.getBasicInfoList(customer, provider,limit, (page-1) * limit);
-        Integer total = basicInfoDao.getBasicInfoCount(customer, provider);
+        List<BasicInfo>  list=  basicInfoDao.getBasicInfoList(customer.isEmpty()?null:customer, provider.isEmpty()?null:customer,limit, (page-1) * limit);
+        Integer total = basicInfoDao.getBasicInfoCount(customer.isEmpty()?null:customer, provider.isEmpty()?null:customer);
         Map<String, Object> map = new java.util.HashMap<>();
         map.put("items", list);
         map.put("total", total);
